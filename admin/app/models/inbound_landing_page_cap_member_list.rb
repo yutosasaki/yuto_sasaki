@@ -1,0 +1,2 @@
+class InboundLandingPageCapMemberList < ApplicationRecord
+end
