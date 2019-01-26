@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     debugger
     if @user.save
-      flash[:success] = "Welcome to the Yuto Sasaki Home Page!"
+      flash[:success] = 'Welcome to the Yuto Sasaki Home Page!'
       redirect_to @user
     else
       render 'new'
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "プロフィールを更新しました。"
+      flash[:success] = 'プロフィールを更新しました。'
       redirect_to @user
     else
       render 'edit'
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = "Please log in."
+      flash[:danger] = 'Please log in.'
       redirect_to login_url
     end
   end
