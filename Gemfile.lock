@@ -85,6 +85,7 @@ GEM
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
     chronic (0.10.2)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -141,6 +142,14 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-doc (1.0.0)
+      pry (~> 0.11)
+      yard (~> 0.9.11)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
@@ -252,6 +261,7 @@ GEM
     will_paginate (3.1.6)
     xpath (3.1.0)
       nokogiri (~> 1.8)
+    yard (0.9.18)
 
 PLATFORMS
   ruby
@@ -272,6 +282,8 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
+  pry-doc
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
   rspec-rails
