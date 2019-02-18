@@ -68,6 +68,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'pry-doc'
+  # カバレッジ取得
+  gem "simplecov"
 end
 
 group :development do
