@@ -61,6 +61,11 @@ gem 'webpacker', github: 'rails/webpacker'
 # add whenever(schedule, task)
 gem 'whenever', :require => false
 
+gem 'geocoder'
+gem 'gmaps4rails'
+
+gem 'config'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -68,6 +73,11 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'pry-doc'
+  # カバレッジ取得
+  gem "simplecov"
+
+  # render template
+  gem 'rails-controller-testing'
 end
 
 group :development do
