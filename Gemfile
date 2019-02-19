@@ -75,6 +75,9 @@ group :development, :test do
   gem 'pry-doc'
   # カバレッジ取得
   gem "simplecov"
+
+  # render template
+  gem 'rails-controller-testing'
 end
 
 group :development do
