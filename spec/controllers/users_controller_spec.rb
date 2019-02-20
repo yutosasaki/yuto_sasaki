@@ -142,9 +142,18 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'パラメータが不正な時' do
+      before do
+        log_in user
+      end
+
       it 'リクエストが成功すること' do
         put :update, params: { id: user, user: attributes_for(:user, :invalid) }
-        expect(response.status).to eq 302
+        expect(response.status).to eq 200
+      end
+
+      it 'edit画面へ遷移すること' do
+        put :update, params: { id: user, user: attributes_for(:user, :invalid) }
+        expect(response).to render_template 'edit'
       end
     end
   end
