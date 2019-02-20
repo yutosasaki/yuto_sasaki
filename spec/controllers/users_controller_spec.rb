@@ -54,6 +54,23 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'GET #new' do
+    it 'リクエストが成功すること' do
+      get :new
+      expect(response.status).to eq 200
+    end
+
+    it 'newテンプレートにrenderされること' do
+      get :new
+      expect(response).to render_template :new
+    end
+
+    it '@userがnewされていること' do
+      get :new
+      expect(assigns :user).not_to be_nil
+    end
+  end
+
   describe 'GET #show' do
     include SessionsHelper
     context 'ユーザが存在する時' do
