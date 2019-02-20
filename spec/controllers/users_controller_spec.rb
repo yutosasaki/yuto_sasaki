@@ -54,6 +54,33 @@ RSpec.describe UsersController, type: :controller do
       post :create, params: { user: attributes_for(:user, :invalid) }
       expect(assigns(:user).errors.any?).to be_truthy
     end
+  end
+
+  describe 'GET #show' do
+    include SessionsHelper
+    context 'ユーザが存在する時' do
+      let(:user) { create :user }
+
+      it 'リクエストが成功すること' do
+        get :show, params: { id: user }
+        expect(response.status).to eq 200
+      end
+
+      it 'showテンプレートが表示されること' do
+        get :show, params: { id: user }
+        expect(response).to render_template :show
+      end
+
+      it '@userを取得できていること' do
+        get :show, params: { id: user }
+        expect(assigns :user).to eq user
+      end
+    end
+
+    context 'ユーザが存在しない時' do
+      subject { -> { get :show, params: { id: 1 } } }
+      it { is_expected.to raise_error ActiveRecord::RecordNotFound }
+    end
 
   end
 end
