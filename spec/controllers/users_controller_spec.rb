@@ -54,6 +54,24 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'GET #edit' do
+    include SessionsHelper
+    let(:user) { create(:user) }
+    before do
+      log_in user
+    end
+
+    it 'リクエストが成功すること' do
+      get :edit, params: { id: user }
+      expect(response.status).to eq 200
+    end
+
+    it 'editテンプレートが表示されること' do
+      get :edit, params: { id: user }
+      expect(response).to render_template :edit
+    end
+  end
+
   describe 'GET #new' do
     it 'リクエストが成功すること' do
       get :new
@@ -146,7 +164,7 @@ RSpec.describe UsersController, type: :controller do
     it 'ユーザが削除されること' do
       expect do
         delete :destroy, params: { id: admin }
-        end.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
     end
 
     it 'ユーザ一覧にリダイレクトされること' do
