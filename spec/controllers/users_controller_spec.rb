@@ -27,8 +27,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'POST #create' do
-    include SessionsHelper
-    let(:user_params) { build(:user_params) }
 
     context 'パラメータが正常な時' do
       it 'リクエストが成功すること' do
@@ -81,6 +79,38 @@ RSpec.describe UsersController, type: :controller do
       subject { -> { get :show, params: { id: 1 } } }
       it { is_expected.to raise_error ActiveRecord::RecordNotFound }
     end
+  end
 
+  describe 'PUT #update' do
+    include SessionsHelper
+    let(:user) { create(:user) }
+
+    context 'パラメータが正常な時' do
+      before do
+        log_in user
+      end
+      it 'リクエストが成功すること' do
+        put :update, params: { id: user, user: attributes_for(:user) }
+        expect(response.status).to eq 302
+      end
+
+      it 'ユーザ名が更新されること' do
+        expect do
+          put :update, params: { id: user, user: attributes_for(:user2) }
+        end.to change { User.find(user.id).name }.from('testUser1').to('testUser2')
+      end
+
+      it 'リダイレクトすること' do
+        put :update, params: { id: user, user: attributes_for(:user2) }
+        expect(response).to redirect_to user
+      end
+    end
+
+    context 'パラメータが不正な時' do
+      it 'リクエストが成功すること' do
+        put :update, params: { id: user, user: attributes_for(:user, :invalid) }
+        expect(response.status).to eq 302
+      end
+    end
   end
 end
