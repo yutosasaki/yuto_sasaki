@@ -113,4 +113,29 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    include SessionsHelper
+    before do
+      log_in admin
+    end
+    let(:user) { create :user }
+    let(:admin) { create(:admin) }
+    it 'リクエストが成功すること' do
+      delete :destroy, params: { id: admin }
+      expect(response.status).to eq 302
+    end
+
+    it 'ユーザが削除されること' do
+      expect do
+        delete :destroy, params: { id: admin }
+        end.to change(User, :count).by(-1)
+    end
+
+    it 'ユーザ一覧にリダイレクトされること' do
+      delete :destroy, params: { id: admin }
+      expect(response).to redirect_to users_url
+    end
+
+  end
 end

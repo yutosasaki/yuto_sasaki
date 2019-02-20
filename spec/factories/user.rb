@@ -12,18 +12,27 @@ FactoryBot.define do
     end
   end
 
-  factory :inactive_user do
+  factory :user2, class: User do
     id { 2 }
     name { 'testUser2' }
-    email { 'example01@example.com' }
+    email { 'example02@example.com' }
     password { '123abc#$' }
-    activated { false }
-    created_at { '2019-01-13' }
+    activated { true }
+    created_at { '2019-01-11' }
+
+    trait :invalid do
+      name { nil }
+    end
   end
 
-  factory :user_params do
-    name { 'testUser3' }
-    email { 'example03@example.com' }
+  factory :admin, class: User do
+    id { 3 }
+    name { admin }
+    email { 'admin@example.com' }
     password { '123abc#$' }
+    activated { true }
+    created_at { '2019-02-20' }
+
+    admin { true }
   end
 end
