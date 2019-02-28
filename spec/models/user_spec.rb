@@ -11,6 +11,7 @@ end
 
 describe '#digest' do
   context '文字列のハッシュを返す' do
+    include SessionsHelper
     let(:user) { create(:user) }
     it { is_expected.to satisfy { user.password_digest.length > 10 } }
   end
